@@ -16,6 +16,7 @@
 use std::io;
 use std::ops::Range;
 use std::str;
+use std::process::Command;
 
 use vte;
 use base64;
@@ -823,9 +824,17 @@ impl<'a, H, W> vte::Perform for Performer<'a, H, W>
                 match params[2] {
                     b"?" => unhandled(params),
                     selection => {
+                        println!("{:?}", params[1]);
                         if let Ok(string) = base64::decode(selection) {
                             if let Ok(utf8_string) = str::from_utf8(&string) {
-                                self.handler.set_clipboard(utf8_string);
+                                if params[1] == b"c" {
+                                    self.handler.set_clipboard(utf8_string);
+                                } else {
+                                    Command::new("/home/amos/scripts/osc52dispatcher.sh")
+                                        .arg(String::from_utf8_lossy(params[1]).into_owned())
+                                        .arg(utf8_string)
+                                        .spawn();
+                                }
                             }
                         }
                     }

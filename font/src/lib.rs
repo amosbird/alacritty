@@ -59,7 +59,7 @@ mod darwin;
 pub use darwin::*;
 
 /// Width/Height of the cursor relative to the font width
-pub const CURSOR_WIDTH_PERCENTAGE: i32 = 15;
+pub const CURSOR_WIDTH_PERCENTAGE: i32 = 35;
 
 /// Character used for the underline cursor
 // This is part of the private use area and should not conflict with any font
