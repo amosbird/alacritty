@@ -827,7 +827,7 @@ impl<'a, H, W> vte::Perform for Performer<'a, H, W>
                         println!("{:?}", params[1]);
                         if let Ok(string) = base64::decode(selection) {
                             if let Ok(utf8_string) = str::from_utf8(&string) {
-                                if params[1] == b"c" {
+                                if params[1] == b"" || params[1] == b"c" {
                                     self.handler.set_clipboard(utf8_string);
                                 } else {
                                     Command::new("/home/amos/scripts/osc52dispatcher.sh")
