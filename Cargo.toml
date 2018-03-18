@@ -23,7 +23,8 @@ serde = "1"
 serde_derive = "1"
 serde_json = "1"
 serde_yaml = "0.7"
-vte = "0.3"
+# vte = "0.3"
+vte = { path = "/home/amos/git/vte"}
 mio = "0.6"
 mio-more = "0.1"
 copypasta = { path = "./copypasta" }
